@@ -1,0 +1,17 @@
+﻿@model IEnumerable<LibraryManagementProject.Models.Lend>
+
+@{
+    ViewData["Title"] = "Lends";
+}
+
+<h1>Lends</h1>
+
+@foreach (var item in Model)
+{
+    <div class="card" style="width: 24rem; margin-left: 4px; float: left">
+        <div class="card-body">
+            <h5 class="card-title">Lended Book: @item.Book.Title</h5>
+            <p class="card-text">Borrower: @item.User.UserName</p>
+        </div>
+    </div>
+}

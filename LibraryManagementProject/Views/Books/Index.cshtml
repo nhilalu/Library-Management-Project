@@ -1,0 +1,31 @@
+﻿@model IEnumerable<LibraryManagementProject.Models.Book>
+@using Microsoft.AspNetCore.Identity;
+@inject RoleManager<IdentityRole> _roleManager
+
+@{
+    ViewData["Title"] = "Book";
+}
+
+<h1>Books</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">Create New</a>
+</p>
+
+@foreach (var book in Model)
+{
+    <div class="card" style="width: 24rem; margin-left: 4px; float: left">
+        <div class="card-body">
+            <h5 class="card-title">@book.Title</h5>
+            @if (book.LendId == null)
+            {
+                <p class="card-text text-success"><b>Available</b></p>
+                <a asp-controller="Books" asp-action="Borrow" asp-route-id="@book.BookId" class="btn btn-primary">Borrow</a>
+            }
+            else
+            {
+                <p class="card-text text-danger"><b>On Hold</b></p>
+            }
+        </div>
+    </div>
+}

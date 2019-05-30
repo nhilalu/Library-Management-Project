@@ -1,0 +1,49 @@
+﻿@model IEnumerable<LibraryUser>
+@using Microsoft.AspNetCore.Identity
+@inject RoleManager<IdentityRole> roleManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Is Admin</th>
+            <th scope="col">Remove Admin</th>
+            <th scope="col">>Make Admin</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">1</th>
+                <td>@item.Email</td>
+                <td>@item.UserName</td>
+                <td>
+                    @if (User.IsInRole("admin"))
+                    {<p>Admin</p> }
+                    else
+                    {
+                        <p>Not Admin</p>
+                    }
+                </td>
+                <td>
+                    @if (User.IsInRole("admin"))
+                    {
+                    <th scope="col"><a asp-controller="UserManager" asp-action="RemoveAdmin" asp-route-id="@item.Id">Remove Admin</a></th>
+                }
+                else
+                {
+                    <th scope="col"><a asp-controller="UserManager" asp-action="MakeAdmin" asp-route-id="@item.Id">Make Admin</a></th>
+                }
+                    </td>
+                </tr>
+            }
+    </tbody>
+</table>

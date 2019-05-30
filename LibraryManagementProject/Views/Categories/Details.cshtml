@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Book>
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+@foreach (var book in Model)
+{
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">@book.Title</h5>
+            <p class="card-text">@book.Publisher</p>
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+        </div>
+    </div>
+}
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
